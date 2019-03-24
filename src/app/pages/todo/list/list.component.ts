@@ -1,8 +1,11 @@
 /** Angular Imports **/
 import { Component, OnInit } from '@angular/core';
 
+/** Rxjs Import **/
+import { Observable } from 'rxjs';
+
 /** Service Import **/
-import { TodoService } from '../../../services/todo.service';
+import { TodoStoreService } from '../store/todo-store.service';
 
 /** Model Import **/
 import { Todo } from '../../../models/todo';
@@ -16,21 +19,29 @@ export class ListComponent implements OnInit {
 
   headElements = ['ID', 'Title', 'Assign', 'Action'];
 
-  todoList: Todo[] = [
-    { id: 1, title: 'Create todo app', assign: 'Jhonatan'},
-    { id: 2, title: 'Create todo app', assign: 'Jhonatan'},
-    { id: 3, title: 'Create todo app', assign: 'Jhonatan'},
-    { id: 4, title: 'Create todo app', assign: 'Jhonatan'},
-    { id: 5, title: 'Create todo app', assign: 'Jhonatan'}
-  ];
+  todos$: Observable<Todo[]>;
+  isLoading$: Observable<boolean>;
+  error$: Observable<string>;
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoStoreService: TodoStoreService) { }
 
   ngOnInit() {
-    this.todoService.getTodoList()
-      .subscribe(res => {
-        this.todoList = res;
-      });
+    this.todoStoreService.dispatchLoadAction();
+    this.todos$ = this.todoStoreService.getTodo();
+    this.isLoading$ = this.todoStoreService.getIsLoading();
+    this.error$ = this.todoStoreService.getError();
+  }
+
+  onCreateTodo(todo) {
+    this.todoStoreService.dispatchCreateAction(new Todo(todo));
+  }
+
+  removeTodo(todo) {
+    this.todoStoreService.dispatchRemoveAction(todo);
+  }
+
+  onUpdateTodo(event) {
+    this.todoStoreService.dispatchUpdateAction(event.updates);
   }
 
 }

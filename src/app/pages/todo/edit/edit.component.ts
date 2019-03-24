@@ -1,6 +1,12 @@
+/** Angular Imports **/
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../../../services/todo.service';
+import { ActivatedRoute } from '@angular/router';
+
+/** Model Import **/
 import { Todo } from '../../../models/todo';
+
+/** Store Import **/
+import { TodoStoreService } from '../store/todo-store.service';
 
 @Component({
   selector: 'ng-redux-edit',
@@ -11,22 +17,30 @@ export class EditComponent implements OnInit {
 
   todoState = 'Creating Todo';
 
-  constructor(private todoService: TodoService) { }
+  constructor(
+    private todoStoreService: TodoStoreService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params && params['id']) {
+        this.todoState = 'Edit Todo';
+        const id = params['id'];
+        this.getTodo(id);
+      } else {
+        this.todoState = 'Creating Todo';
+      }
+    });
+  }
+
+  getTodo(id: string) {
+    console.log(id);
   }
 
   createTodo(): void {
-    const todo: Todo = {
-      id: 2,
-      isDone: false,
-      assign: 'User Name',
-      title: 'Creating todo'
-    };
-    this.todoService.createTodo(todo)
-      .subscribe(res => {
-        console.log(res);
-      });
+    const todo = new Todo('', 'Creating todo', 'Jhonatan', false);
+    this.todoStoreService.dispatchCreateAction(todo);
   }
 
 }

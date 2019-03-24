@@ -20,17 +20,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr mdbTableCol *ngFor="let el of todoList">
-        <th scope="row">{{el.id}}</th>
-        <td>{{el.title}}</td>
-        <td>{{el.assign || 'N/A'}}</td>
+      <tr mdbTableCol *ngFor="let todo of todos$ | async">
+        <th scope="row" width="20%">{{todo.id}}</th>
+        <td>{{todo.title}}</td>
+        <td>{{todo.assign || 'N/A'}}</td>
         <td width="20%">
           <div class="btn-group" role="group" aria-label="Actions Todo List">
             <a mdbBtn class="m-0" color="primary" size="sm" rounded="true" mdbWavesEffect type="button"
-               [routerLink]="'/todo/edit/' + el.id">
+               [routerLink]="'/todo/edit/' + todo.id">
               Edit
             </a>
-            <button mdbBtn class="m-0" color="danger" size="sm" rounded="true" mdbWavesEffect type="button">
+            <button mdbBtn class="m-0" color="danger" size="sm" rounded="true" mdbWavesEffect type="button"
+                    (click)="removeTodo(todo)">
               Remove
             </button>
           </div>

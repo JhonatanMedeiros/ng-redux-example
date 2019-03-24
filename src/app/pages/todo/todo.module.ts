@@ -9,9 +9,13 @@ import { WavesModule, TableModule, ButtonsModule, IconsModule, CheckboxModule, I
 /** Routing Module Import **/
 import { TodoRoutingModule } from './todo-routing.module';
 
+/** Store Module Import **/
+import { TodoStoreModule } from './store/todo-store.module';
+
 /** Components Imports **/
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
+import { TodoService } from './services/todo.service';
 
 const MD_ANGULAR_IMPORTS: any[] = [
   WavesModule,
@@ -30,7 +34,9 @@ const MD_ANGULAR_IMPORTS: any[] = [
     FormsModule,
     ReactiveFormsModule,
     TodoRoutingModule,
+    TodoStoreModule,
     ...MD_ANGULAR_IMPORTS
-  ]
+  ],
+  providers: [TodoService]
 })
 export class TodoModule { }
