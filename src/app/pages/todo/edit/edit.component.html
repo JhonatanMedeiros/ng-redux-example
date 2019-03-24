@@ -1,0 +1,58 @@
+<div class="row mt-5">
+
+  <div class="col-12">
+
+    <mdb-card>
+
+      <mdb-card-header class="info-color white-text text-center py-4">
+        <h5 class="m-0">
+          <strong>{{todoState}}</strong>
+        </h5>
+      </mdb-card-header>
+
+      <!--Card content-->
+      <mdb-card-body class="px-lg-5">
+
+        <!-- Form -->
+        <form autocomplete="off" style="color: #757575;">
+
+          <!-- Title -->
+          <div class="md-form mt-3">
+            <input type="text" id="todoTitle" class="form-control" mdbInput>
+            <label for="todoTitle">Title</label>
+          </div>
+
+          <!-- Assign -->
+          <label for="todoAssign">Assign</label>
+          <div class="row">
+            <div class="col-md-12 mx-auto">
+              <select class="browser-default custom-select mb-4" id="todoAssign">
+                <option value="" disabled>Choose option</option>
+                <option value="1">Jhonatan</option>
+                <option value="2">Maria</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Is done -->
+          <div class="row">
+            <div class="col-md-6 mx-auto d-flex justify-content-center">
+              <mdb-checkbox>Is Done ?</mdb-checkbox>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button mdbBtn color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect"
+                  mdbWavesEffect type="submit">Save</button>
+
+        </form>
+        <!-- Form -->
+
+      </mdb-card-body>
+
+    </mdb-card>
+
+
+  </div>
+
+</div>
