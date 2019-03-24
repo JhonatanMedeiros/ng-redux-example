@@ -1,7 +1,15 @@
+/** Angular Imports **/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+/** External Libs Imports **/
+// Angular Bootstrap
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+/** App Router Module Import **/
 import { AppRoutingModule } from './app-routing.module';
+
+/** Components Imports **/
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -10,7 +18,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
