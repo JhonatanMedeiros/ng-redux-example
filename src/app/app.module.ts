@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 // Angular Bootstrap
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
-/** App Router Module Import **/
+/** App Routing Module Import **/
 import { AppRoutingModule } from './app-routing.module';
 
 /** Components Imports **/
